@@ -4,14 +4,17 @@ import UseClima from "../hooks/useClima";
 
 function Formulario() {
   const [alerta, setAlerta] = useState("");
-  const { busqueda, datosBusqueda } = UseClima();
+  const { busqueda, datosBusqueda, consultarClima } = UseClima();
   const { ciudad, pais } = busqueda;
-  const handleSubmit = (e) => {
-    e.preventdefault()
+
+  const handleSubmit = e => {
+    
+    e.preventDefault()
     if (Object.values(busqueda).includes("")) {
       setAlerta("Todos los campos son requeridos");
+      return
     }
-    console.log(handleSubmit);
+    consultarClima(busqueda)
   };
   return (
     <div className="contenedor">
